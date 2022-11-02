@@ -12,24 +12,20 @@ int main()
 		cout << "File not found!" << endl;
 		return -1;
 	}
-	
-	/* this snippit of code reads the whole file word for word.
-	while (!inputfile.eof())
-	{
-		string word;
-		inputfile >> word;
-		cout << word << endl;
-	}
-	*/
 
-	// This snippit of code reads a line from the file, and then words from a given line.
+	/*
+	* USE THIS:
+	* This snippit of code reads a line from the file, and then the words from a given line.
+	*/
 	while (!inputfile.eof())
 	{
+		// get the line.
 		string line_in_file;
 		getline(inputfile, line_in_file);
 		
 		stringstream ss(line_in_file);
 
+		// output each word.
 		while (!ss.eof())
 		{
 			string word;
