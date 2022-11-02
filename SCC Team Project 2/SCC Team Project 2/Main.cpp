@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -12,11 +13,31 @@ int main()
 		return -1;
 	}
 	
-	// rest of code goes here.
+	/* this snippit of code reads the whole file word for word.
+	while (!inputfile.eof())
+	{
+		string word;
+		inputfile >> word;
+		cout << word << endl;
+	}
+	*/
 
+	// This snippit of code reads a line from the file, and then words from a given line.
+	while (!inputfile.eof())
+	{
+		string line_in_file;
+		getline(inputfile, line_in_file);
+		
+		stringstream ss(line_in_file);
 
-
-	// rest of code ends here.
+		while (!ss.eof())
+		{
+			string word;
+			ss >> word;
+			cout << word << " ";
+		}
+		cout << endl;
+	}
 
 	inputfile.close();
 
