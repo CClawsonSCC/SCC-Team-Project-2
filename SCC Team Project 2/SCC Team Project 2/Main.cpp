@@ -1,6 +1,7 @@
+#include "Parser.h"
+
 #include <iostream>
 #include <fstream>
-#include <sstream>
 
 using namespace std;
 
@@ -22,17 +23,23 @@ int main()
 		// get the line.
 		string line_in_file;
 		getline(inputfile, line_in_file);
-		
-		stringstream ss(line_in_file);
 
-		// output each word.
-		while (!ss.eof())
+		if (line_in_file.size() > 0) // ignores empty lines
 		{
-			string word;
-			ss >> word;
-			cout << word << " ";
+			try
+			{
+				cout << eval_postfix(
+					infix_to_postfix(
+						read_expression(line_in_file)
+					)
+				) << endl;
+			}
+			catch (const std::exception& e)
+			{
+				cout << "There is a problem with one of the expressions: ";
+				cerr << e.what() << endl;
+			}
 		}
-		cout << endl;
 	}
 
 	inputfile.close();
